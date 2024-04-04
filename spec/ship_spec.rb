@@ -22,4 +22,38 @@ RSpec.describe Ship do
             expect(@cruiser.health).to eq(3)
         end
     end
+
+    describe "#sunk?" do
+        it "returns false if health is greater than 0" do
+            expect(@cruiser.sunk?).to be(false)
+        end
+
+        it "returns true if health is 0" do
+            expect(@cruiser.sunk?).to be(false)
+
+            @cruiser.hit
+
+            expect(@cruiser.health).to eq(2)
+
+            @cruiser.hit
+
+            expect(@cruiser.health).to eq(1)
+
+            expect(@cruiser.sunk?).to be(false)
+
+            @cruiser.hit
+
+            expect(@cruiser.sunk?).to be(true)
+        end
+    end
+
+    describe "hit" do
+        it "decreases health by 1" do
+            expect(@cruiser.health).to eq(3)
+
+            @cruiser.hit
+
+            expect(@cruiser.health).to eq(2)
+        end
+    end
 end
