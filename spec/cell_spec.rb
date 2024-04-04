@@ -19,4 +19,22 @@ RSpec.describe Cell do
             expect(@cell.ship).to eq(nil)
         end
     end
+
+    describe "empty?" do
+        it "returns true if the cell is empty" do
+            expect(@cell.empty?).to be(true)
+
+            @cell.place_ship(@cruiser)
+
+            expect(@cell.empty?).to be(false)
+        end
+    end
+
+    describe "#place_ship" do
+        it "stores the ship" do
+            @cell.place_ship(@cruiser)
+
+            expect(@cell.ship).to eq(@cruiser)
+        end
+    end
 end
