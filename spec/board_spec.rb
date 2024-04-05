@@ -46,7 +46,7 @@ RSpec.describe Board do
       expect(@board.valid_placement?(@cruiser, ["A1", "A2"])).to eq(false)
       expect(@board.valid_placement?(@submarine, ["A2", "A3", "A4"])).to eq(false)
     end
-    # binding.pry
+
     it 'makes sure the coordinates are consecutive' do
 
       expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A4"])).to eq(false)
@@ -68,6 +68,12 @@ RSpec.describe Board do
       expect(@board.valid_placement?(@submarine, ["A1", "A2"])).to eq(true)
       expect(@board.valid_placement?(@cruiser, ["B1", "C1", "D1"])).to eq(true)
     end
+
+    # it 'makes sure ships can not overlap' do
+    #   @board.place(@cruiser, ["A1", "A2", "A3"])
+
+    #   expect(@board.valid_placement?(@submarine, ["A1", "B1"])).to eq(false)
+    # end
   end
 
   describe "#place" do
@@ -82,8 +88,16 @@ RSpec.describe Board do
       expect(cell_1.ship).to eq(@cruiser)
       expect(cell_2.ship).to eq(@cruiser)
       expect(cell_3.ship).to eq(@cruiser)
-      
+
       expect(cell_2.ship).to eq(cell_3.ship)
+    end
+  end
+
+  describe 'overlap?' do
+    it 'checks if specified coordinates are empty' do
+      @board.place(@cruiser, ["A1", "A2", "A3"])
+
+      expect(@board.overlap?(["A1", "B1"])).to eq(true)
     end
   end
 end
