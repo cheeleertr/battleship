@@ -36,7 +36,7 @@ class Board
   end
 
   def place(ship, coordinates)
-    if valid_placement?(ship, coordinates)
+    if valid_placement?(ship, coordinates) # && validate_coordinates?
       coordinates.each do |coordinate|
         @cells[coordinate].place_ship(ship)
       end
