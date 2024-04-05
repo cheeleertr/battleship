@@ -63,5 +63,10 @@ RSpec.describe Board do
       expect(@board.valid_placement?(@submarine, ["C1", "B1"])).to eq(false)
     end
 
+    it 'makes sure the placement is valid with correct coordinates' do
+
+      expect(@board.valid_placement?(@submarine, ["A1", "A2"])).to eq(true)
+      expect(@board.valid_placement?(@cruiser, ["B1", "C1", "D1"])).to eq(true)
+    end
   end
 end
