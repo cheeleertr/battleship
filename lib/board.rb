@@ -15,7 +15,7 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    if ship.length != coordinates.length || overlap?(coordinates)
+    if ship.length != coordinates.length && overlap?(coordinates)
       false
     elsif
       row = coordinates.map do |coordinate| 
@@ -48,10 +48,10 @@ class Board
 
   def overlap?(coordinates)
     coordinates.each do |coordinate|
-      if @cells[coordinate].empty?
-        return false
-      else 
+      if !@cells[coordinate].empty?
         return true
+      else 
+        false
       end
     end
   end
