@@ -34,4 +34,14 @@ class Board
   def all_equal?(array)
     array.uniq.length == 1
   end
+
+  def place(ship, coordinates)
+    if valid_placement?(ship, coordinates)
+      coordinates.each do |coordinate|
+        @cells[coordinate].place_ship(ship)
+      end
+    else
+      false
+    end
+  end
 end
