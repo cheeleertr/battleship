@@ -69,11 +69,11 @@ RSpec.describe Board do
       expect(@board.valid_placement?(@cruiser, ["B1", "C1", "D1"])).to eq(true)
     end
 
-    # it 'makes sure ships can not overlap' do
-    #   @board.place(@cruiser, ["A1", "A2", "A3"])
+    it 'makes sure ships can not overlap' do
+      @board.place(@cruiser, ["A1", "A2", "A3"])
 
-    #   expect(@board.valid_placement?(@submarine, ["A1", "B1"])).to eq(false)
-    # end
+      expect(@board.valid_placement?(@submarine, ["A1", "B1"])).to eq(false)
+    end
   end
 
   describe "#place" do
@@ -93,7 +93,7 @@ RSpec.describe Board do
     end
   end
 
-  describe 'overlap?' do
+  describe '#overlap?' do
     it 'checks if specified coordinates are empty' do
       @board.place(@cruiser, ["A1", "A2", "A3"])
 

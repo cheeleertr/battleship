@@ -15,7 +15,7 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    if ship.length != coordinates.length
+    if ship.length != coordinates.length || overlap?(coordinates)
       false
     elsif
       row = coordinates.map do |coordinate| 
@@ -31,6 +31,7 @@ class Board
       false
     end
   end
+
   def all_equal?(array)
     array.uniq.length == 1
   end
