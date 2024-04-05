@@ -25,14 +25,12 @@ class Board
       column = coordinates.map do |coordinate|
         coordinate[1]
       end
-# binding.pry
+
       ("1234".include?(column.join) || "ABCD".include?(row.join)) && (all_equal?(column) || all_equal?(row))
     else
       false
     end
   end
-
-  #testing
   def all_equal?(array)
     array.uniq.length == 1
   end
