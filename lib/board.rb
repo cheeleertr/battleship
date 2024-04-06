@@ -10,8 +10,8 @@ class Board
       end
   end
 
-  def validate_coordinates?(coordinates)
-    @cells.keys.include?(coordinates)
+  def validate_single_coordinate?(coordinate)
+    @cells.keys.include?(coordinate)
   end
 
   def valid_placement?(ship, coordinates)
