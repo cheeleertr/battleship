@@ -98,6 +98,7 @@ RSpec.describe Board do
       @board.place(@cruiser, ["A1", "A2", "A3"])
 
       expect(@board.overlap?(["A1", "B1"])).to eq(true)
+      expect(@board.overlap?(["C1", "B1"])).to eq(false)
     end
   end
 end
