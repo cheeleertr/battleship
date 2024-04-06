@@ -42,9 +42,10 @@ RSpec.describe Board do
   
   describe 'validate_coordinates?' do
     it 'validates multiple coordinates' do
-      expect(@board.validate_coordinates?(["A1, B1"])).to eq(true)
-      expect(@board.validate_coordinates?(["A1", "B13"])).to eq(false)
+      expect(@board.validate_coordinates?(["A1", "B1"])).to eq(true)
+      expect(@board.validate_coordinates?(["B13", "A1"])).to eq(false)
     end
+  end
 
   describe 'valid_placement?' do
     it 'verifies if ships can be placed at the coordinates' do
