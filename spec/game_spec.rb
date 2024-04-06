@@ -1,31 +1,46 @@
 require 'spec_helper'
 
-RSpec.describe Board do
+RSpec.describe Game do
   before :each do
-    @computer_player = Player.new
+    @cruiser = Ship.new("Cruiser", 3)
+    @submarine = Ship.new("Submarine", 2)
     @player_1 = Player.new
+    @computer_player = Player.new
+    @player_1.add_ship(@cruiser)
+    @player_1.add_ship(@submarine)
+    @computer_player.add_ship(@cruiser)
+    @computer_player.add_ship(@submarine)
 
+    @game = Game.new(@player_1, @computer_player)
   end
 
   describe '#initialize' do
     it 'exists' do
 
-    expect().to be_an_instance_of()
+    expect(@game).to be_an_instance_of(Game)
     end
 
-    # it 'has cells' do
+    it 'has players' do
 
-    #   expect().to all(be_a())
-    # end
+      expect(@game.player_1).to eq(@player_1)
+      expect(@game.computer_player).to eq(@computer_player)
+    end
+  end
 
-    # it '' do
-      
-    #   expect().to be_a()
-    # end
+  describe '#random_coordinate' do
+    it 'has valid number of coordinates' do
 
-    # it '' do
+      expect(@game.random_coordinate(@cruiser).length).to eq(@cruiser.length)
+    end
 
-    #   expect().to eq()
-    # end
+    it 'has each random coordinate is valid' do
+
+      expect(@player_1.board.validate_coordinates?(@game.random_coordinate(@cruiser))).to be(true)
+    end
+
+    it 'has random consecutive coordinates' do
+
+      expect(@player_1.board.valid_placement?(@cruiser, @game.random_coordinate(@cruiser))).to be(true)
+    end
   end
 end
