@@ -118,5 +118,66 @@ RSpec.describe Board do
 
       expect(@board.render(true)).to eq(expected)
     end
+
+    it 'renders an M for a miss' do
+      @board.place(@cruiser, ["B1", "B2", "B3"])
+
+      cell_1 = @board.cells["A1"] 
+      cell_2 = @board.cells["A2"]
+      cell_3 = @board.cells["A3"]  
+
+      cell_1.fire_upon
+
+      expected = "  1 2 3 4 \nA M . . . \nB . . . . \nC . . . . \nD . . . . \n"
+
+      expect(@board.render).to eq(expected)
+    end
+
+    it 'renders Xs for a sunken ship' do
+      @board.place(@cruiser, ["B1", "B2", "B3"])
+
+      cell_1 = @board.cells["B1"] 
+      cell_2 = @board.cells["B2"]
+      cell_3 = @board.cells["B3"] 
+
+      cell_1.fire_upon
+      cell_2.fire_upon
+      cell_3.fire_upon
+
+      expected = "  1 2 3 4 \nA . . . . \nB X X X . \nC . . . . \nD . . . . \n"
+
+      expect(@board.render).to eq(expected)
+    end
+
+    it 'renders an H for a hit' do
+      @board.place(@cruiser, ["B1", "B2", "B3"])
+
+      cell_1 = @board.cells["B1"] 
+      cell_2 = @board.cells["B2"]
+
+      cell_1.fire_upon
+      cell_2.fire_upon
+
+      expected = "  1 2 3 4 \nA . . . . \nB H H . . \nC . . . . \nD . . . . \n"
+
+      expect(@board.render).to eq(expected)
+    end
+
+    it 'renders an S to represent Players ships' do
+      @board.place(@cruiser, ["B1", "B2", "B3"])
+
+      cell_1 = @board.cells["B1"] 
+      cell_2 = @board.cells["B2"]
+      cell_3 = @board.cells["B3"] 
+
+      expected = "  1 2 3 4 \nA . . . . \nB S S S . \nC . . . . \nD . . . . \n"
+
+      expect(@board.render(true)).to eq(expected)
+    end
+
+    it 'renders a periods for a blank board' do
+      expected = "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
+      expect(@board.render).to eq(expected)
+    end
   end
 end
