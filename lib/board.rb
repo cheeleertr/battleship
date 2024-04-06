@@ -14,6 +14,14 @@ class Board
     @cells.keys.include?(coordinate)
   end
 
+  def validate_coordinates?(coordinates)
+    found = coordinates.find do |coordinate| 
+      !validate_single_coordinate?(coordinate)
+    end
+
+    found.nil?
+  end
+
   def valid_placement?(ship, coordinates)
     if ship.length != coordinates.length || overlap?(coordinates)
       false
