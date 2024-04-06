@@ -29,16 +29,22 @@ RSpec.describe Board do
     end
   end
 
-  describe 'validate_coordinates?' do
-    it 'validates coordinates exist' do
+  describe 'validate_single_coordinate?' do
+    it 'validates a single coordinate' do
       
-      expect(@board.validate_coordinates?("A1")).to eq(true)
-      expect(@board.validate_coordinates?("D4")).to eq(true)
-      expect(@board.validate_coordinates?("A5")).to eq(false)
-      expect(@board.validate_coordinates?("E1")).to eq(false)
-      expect(@board.validate_coordinates?("A22")).to eq(false)
+      expect(@board.validate_single_coordinate?("A1")).to eq(true)
+      expect(@board.validate_single_coordinate?("D4")).to eq(true)
+      expect(@board.validate_single_coordinate?("A5")).to eq(false)
+      expect(@board.validate_single_coordinate?("E1")).to eq(false)
+      expect(@board.validate_single_coordinate?("A22")).to eq(false)
     end
   end
+  
+  describe 'validate_coordinates?' do
+    it 'validates multiple coordinates' do
+      expect(@board.validate_coordinates?(["A1, B1"])).to eq(true)
+      expect(@board.validate_coordinates?(["A1", "B13"])).to eq(false)
+    end
 
   describe 'valid_placement?' do
     it 'verifies if ships can be placed at the coordinates' do
