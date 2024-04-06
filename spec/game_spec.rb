@@ -43,4 +43,11 @@ RSpec.describe Game do
       expect(@player_1.board.valid_placement?(@cruiser, @game.random_coordinate(@cruiser))).to be(true)
     end
   end
+
+  describe 'computer_player_place_ships' do
+    it 'can place ships in valid coordinates' do
+      binding.pry
+      expect(@game.computer_player_place_ships).to be(true)
+    end
+  end
 end
