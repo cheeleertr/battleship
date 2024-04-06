@@ -101,4 +101,22 @@ RSpec.describe Board do
       expect(@board.overlap?(["C1", "B1"])).to eq(false)
     end
   end
+
+  describe '#render' do
+    it 'renders the board without showing ships' do
+      @board.place(@cruiser, ["A1", "A2", "A3"])
+
+      expected = "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
+
+      expect(@board.render).to eq(expected)
+    end
+
+    it 'renders the board with ships' do
+      @board.place(@cruiser, ["A1", "A2", "A3"])
+
+      expected = "  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n"
+
+      expect(@board.render(true)).to eq(expected)
+    end
+  end
 end
