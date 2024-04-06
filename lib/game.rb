@@ -30,11 +30,21 @@ class Game
 
   end
 
-  # def computer_player_place_ships
-  #   @computer_player.ships.each do |ship|
-  #     @computer_player.board.place(ship, #random_coordinate(ship.length),)
-  #   end
-  # end
+  def computer_player_place_ships
+    
+
+    @computer_player.ships.each do |ship|
+      coord = random_coordinate(ship)
+      @computer_player.board.place(ship, coord)
+
+      # occupied = @computer_player.board.cells.find_all do |cell|
+      #   cell.ships == ship
+    end
+
+    # coord == occupied
+
+
+  end
 
   def random_coordinate(ship)
     sample_coords = @computer_player.board.cells.keys.sample(ship.length)
