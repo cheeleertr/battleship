@@ -9,4 +9,8 @@ class Turn
     def display_computer_board
         "=============COMPUTER BOARD=============\n#{@computer_player.board.render}"
     end
+
+    def display_player_board
+        "==============PLAYER BOARD==============\n#{@player_1.board.render(true)}"
+    end
 end
