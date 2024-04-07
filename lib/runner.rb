@@ -5,19 +5,22 @@ require './lib/player'
 require './lib/ship'
 require './lib/turn'
 
-cruiser = Ship.new("Cruiser", 3)
-submarine = Ship.new("Submarine", 2)
+loop do
+
+cruiser_1 = Ship.new("Cruiser", 3)
+cruiser_2 = Ship.new("Cruiser", 3)
+submarine_1 = Ship.new("Submarine", 2)
+submarine_2 = Ship.new("Submarine", 2)
 
 player_1 = Player.new
 computer_player = Player.new
 
-player_1.add_ship(cruiser)
-player_1.add_ship(submarine)
-computer_player.add_ship(cruiser)
-computer_player.add_ship(submarine)
-
-
+player_1.add_ship(cruiser_1)
+player_1.add_ship(submarine_1)
+computer_player.add_ship(cruiser_2)
+computer_player.add_ship(submarine_2)
 
 game = Game.new(player_1, computer_player)
 
-game.start
+break if game.main_menu == "You chose to quit."
+end
