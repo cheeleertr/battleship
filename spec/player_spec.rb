@@ -1,15 +1,14 @@
 require 'spec_helper'
 
-RSpec.describe Board do
+RSpec.describe Player do
   before :each do
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
     @player_1 = Player.new
-
   end
 
   describe '#initialize' do
-    it 'exits' do
+    it 'exists' do
 
     expect(@player_1).to be_an_instance_of(Player)
     end
