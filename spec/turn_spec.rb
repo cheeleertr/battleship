@@ -28,7 +28,6 @@ RSpec.describe Turn do
 
         it 'has a computer player' do
             expect(@turn.computer_player).to eq(@computer_player)
-            binding.pry
         end
     end
 
@@ -53,18 +52,4 @@ RSpec.describe Turn do
             expect(@turn.display_player_board).to eq(expected)
         end
     end
-
-    # describe '#display_boards' do
-    #     it 'can display the computer and player boards' do
-    #         @computer_player.board.place(@cruiser, ["A1", "A2", "A3"])
-    #         @player_1.board.place(@cruiser, ["B1", "B2", "B3"])
-
-    #         expected = "=============COMPUTER BOARD=============\n" \
-    #                     "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n" \
-    #                     "==============PLAYER BOARD==============\n" \
-    #                     "  1 2 3 4 \nA . . . . \nB S S S . \nC . . . . \nD . . . . \n"
-
-    #         expect(@turn.display_boards).to eq(expected) #returning nil - how to test?
-    #     end
-    # end
 end

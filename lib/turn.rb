@@ -20,7 +20,10 @@ class Turn
     end
 
     def player_shot
+        puts "\n"
         puts "Enter the coordinate for your shot:"
+        puts "\n"
+
         response = gets.chomp.to_s.upcase
 
         while !@computer_player.board.validate_single_coordinate?(response) || @computer_player.board.cells[response].fired_upon?
@@ -44,11 +47,13 @@ class Turn
         else
             hit_or_miss = "miss"
         end
+        puts "\n"
         puts "You fired at #{fired_coordinate}. It's a #{hit_or_miss}!"
         unless hit_or_miss == "hit" && @computer_player.board.cells[fired_coordinate].ship.sunk?
             return
         end
         puts "You sunk my #{@computer_player.board.cells[fired_coordinate].ship.name}!"
+        puts "\n"
     end
 
     def random_unfired_coordinate
@@ -75,5 +80,6 @@ class Turn
         if hit_or_miss == "hit" && @player_1.board.cells[fired_coordinate].ship.sunk?
             puts "I sunk your #{@player_1.board.cells[fired_coordinate].ship.name}!"
         end
+        puts "\n"
     end
 end
