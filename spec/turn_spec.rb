@@ -28,6 +28,7 @@ RSpec.describe Turn do
 
         it 'has a computer player' do
             expect(@turn.computer_player).to eq(@computer_player)
+            binding.pry
         end
     end
 
@@ -48,7 +49,7 @@ RSpec.describe Turn do
 
             expected = "==============PLAYER BOARD==============\n" \
                         "  1 2 3 4 \nA . . . . \nB S S S . \nC . . . . \nD . . . . \n"
-            binding.pry
+
             expect(@turn.display_player_board).to eq(expected)
         end
     end
