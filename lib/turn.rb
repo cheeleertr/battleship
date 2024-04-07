@@ -21,20 +21,20 @@ class Turn
 
     def player_shot
         puts "Enter the coordinate for your shot:"
-        response = gets.chomp.to_s
-        if @computer_player.board.validate_single_coordinate?(response)
-            if  @computer_player.board.cells[response].fired_upon?
-                puts "That cell has already been shot! Choose another one!"
-                false
-            elsif 
-                @computer_player.board.cells[response].fire_upon
-            else
-                true
+        response = gets.chomp.to_s.upcase
+
+        while !@computer_player.board.validate_single_coordinate?(response) || @computer_player.board.cells[response].fired_upon?
+        
+            if !@computer_player.board.validate_single_coordinate?(response)
+                puts "Enter valid coordinate."
+                response = gets.chomp.to_s.upcase
+            elsif @computer_player.board.cells[response].fired_upon?
+                puts "You've already shot here. Enter valid coordinate."
+                response = gets.chomp.to_s.upcase
             end
-        else 
-            puts "Enter a coordinate between A1 - D4."
-            false
         end
+
+        @computer_player.board.cells[response].fire_upon
         response
     end
 
@@ -54,7 +54,7 @@ class Turn
     def random_unfired_coordinate
         unfired_coordinates = @player_1.board.cells.map do |coord, cell|
             coord if !cell.fired_upon?
-        end
+        end.compact
         unfired_coordinates.sample
     end
 
@@ -71,7 +71,7 @@ class Turn
             hit_or_miss = "miss"
         end
         puts "I fired at #{fired_coordinate}. It's a #{hit_or_miss}!"
-        # require 'pry' ; binding.pry
+
         if hit_or_miss == "hit" && @player_1.board.cells[fired_coordinate].ship.sunk?
             puts "I sunk your #{@player_1.board.cells[fired_coordinate].ship.name}!"
         end
