@@ -49,7 +49,7 @@ class Game
       puts "I won!"
     end
   end
-  
+
   def results(turn)
     turn.display_boards
   end
@@ -97,10 +97,10 @@ class Game
       puts "\n"
       puts "Enter the squares for the #{ship.name} (#{ship.length} spaces): "
       puts "\n"
-      response = gets.chomp.split(" ")
+      response = gets.chomp.upcase.split(" ").sort
       while !@player_1.board.valid_placement?(ship, response)
         puts "Those are invalid coordinates. Please try again:"
-        response = gets.chomp.split(" ")
+        response = gets.chomp.upcase.split(" ").sort
       end
       @player_1.board.place(ship, response)
     end
