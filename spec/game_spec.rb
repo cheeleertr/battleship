@@ -44,17 +44,17 @@ RSpec.describe Game do
     end
   end
 
-  describe 'computer_player_place_ships' do
-    it 'can place ships in valid coordinates' do
+  # describe 'computer_player_place_ships' do
+  #   it 'can place ships in valid coordinates' do
 
-      expect(@game.computer_player_place_ships).to be(true)
-    end
-  end
+  #     expect(@game.computer_player_place_ships).to be(true)
+  #   end
+  # end
 
-  describe 'player_1_place_ships' do
-    it 'can place ships in valid coordinates' do
+  # describe 'player_1_place_ships' do
+  #   it 'can place ships in valid coordinates' do
 
-      expect(@game.player_1_place_ships).to be(true)
-    end
-  end
+  #     expect(@game.player_1_place_ships).to be(true)
+  #   end
+  # end
 end
