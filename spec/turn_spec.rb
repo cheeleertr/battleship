@@ -19,15 +19,26 @@ RSpec.describe Turn do
 
     describe "#initialize" do
         it 'exists' do
-            expect(@Turn).to be_an_instance_of(Turn)
+            expect(@turn).to be_an_instance_of(Turn)
         end
 
         it 'has a player' do
-            expect(@turn.player).to eq(@player_1)
+            expect(@turn.player_1).to eq(@player_1)
         end
 
         it 'has a computer player' do
             expect(@turn.computer_player).to eq(@computer_player)
+        end
+    end
+
+    describe '#display_computer_board' do
+        it 'can display the computer board' do
+            @computer_player.board.place(@cruiser, ["A1", "A2", "A3"])
+
+            expected = "=============COMPUTER BOARD=============\n" \
+                        "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
+
+            expect(@turn.display_computer_board).to eq(expected)
         end
     end
 end
