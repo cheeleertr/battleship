@@ -41,4 +41,15 @@ RSpec.describe Turn do
             expect(@turn.display_computer_board).to eq(expected)
         end
     end
+
+    describe '#display_player_board' do
+        it 'can display the player board with placed ships' do
+            @player_1.board.place(@cruiser, ["B1", "B2", "B3"])
+
+            expected = "==============PLAYER BOARD==============\n" \
+                        "  1 2 3 4 \nA . . . . \nB S S S . \nC . . . . \nD . . . . \n"
+
+            expect(@turn.display_player_board).to eq(expected)
+        end
+    end
 end
