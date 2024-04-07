@@ -39,6 +39,9 @@ class Game
 
     end_game
 
+    reset(@player_1)
+    reset(@computer_player)
+
     main_menu
   end
 
@@ -47,6 +50,16 @@ class Game
       puts "You won!"
     elsif !@player_1.board.render(true).include?("S")
       puts "I won!"
+    end
+  end
+
+  def reset(player)
+    player.ships.each do |ship|
+      ship.health = ship.length
+    end
+    player.board.cells.each do |coord, cell|
+      cell.ship = nil
+      cell.fired_upon = false
     end
   end
 
