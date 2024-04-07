@@ -46,11 +46,13 @@ class Game
   end
 
   def end_game
+    puts "\n"
     if !@computer_player.board.render(true).include?("S")
       puts "You won!"
     elsif !@player_1.board.render(true).include?("S")
       puts "I won!"
     end
+    puts "\n"
   end
 
   def reset(player)
