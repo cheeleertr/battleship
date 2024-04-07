@@ -1,14 +1,14 @@
 class Game
-  attr_reader :player_1, :computer_player, :game_ongoing
+  attr_reader :player_1, :computer_player
 
   def initialize(player_1, computer_player)
 
     @player_1 = player_1
     @computer_player = computer_player
-    @game_ongoing = false
+    
   end
 
-  def start
+  def main_menu
     puts "Welcome to BATTLESHIP"
     puts "Enter p to play, q to quit."
     response = gets.chomp.downcase
@@ -16,7 +16,7 @@ class Game
     if response == "q"
       return "You chose to quit."
     end
-    @game_ongoing = true
+    
     setup
   end
 
@@ -30,16 +30,26 @@ class Game
   end
 
   def game_loop
-    while @game_ongoing
+    while @player_1.board.render(true).include?("S") && @computer_player.board.render(true).include?("S")
       turn = Turn.new(@player_1, @computer_player)
       turn.player_shot_results(turn.player_shot)
-      #check_end_game
       turn.computer_shot_results(turn.computer_shot)
-      #check_end_game
       results(turn)
     end
+
+    end_game
+
+    main_menu
   end
 
+  def end_game
+    if !@computer_player.board.render(true).include?("S")
+      puts "You won!"
+    elsif !@player_1.board.render(true).include?("S")
+      puts "I won!"
+    end
+  end
+  
   def results(turn)
     turn.display_boards
   end
