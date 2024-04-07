@@ -13,4 +13,9 @@ class Turn
     def display_player_board
         "==============PLAYER BOARD==============\n#{@player_1.board.render(true)}"
     end
+
+    def display_boards
+        puts display_computer_board
+        puts display_player_board
+    end
 end
