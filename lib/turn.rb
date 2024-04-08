@@ -21,6 +21,8 @@ class Turn
 
     def player_shot
         puts "\n"
+        puts display_boards
+        puts "\n"
         puts "Enter the coordinate for your shot:"
         puts "\n"
 

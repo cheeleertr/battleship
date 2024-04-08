@@ -13,4 +13,8 @@ class Player
   def add_ship(ship)
     @ships << ship
   end
+
+  def new_board
+    @board = Board.new
+  end
 end

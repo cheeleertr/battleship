@@ -25,7 +25,6 @@ class Game
     computer_player_place_ships_text
     explain_ship_placement
     player_1_place_ships
-
     game_loop
   end
 
@@ -57,12 +56,10 @@ class Game
 
   def reset(player)
     player.ships.each do |ship|
-      ship.health = ship.length
+      ship.reset
     end
-    player.board.cells.each do |coord, cell|
-      cell.ship = nil
-      cell.fired_upon = false
-    end
+
+    player.new_board
   end
 
   def results(turn)
