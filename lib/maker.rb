@@ -44,8 +44,8 @@ class Maker
       puts "Enter 'y' to recreate board or 'n' to keep this board"
       response = gets.chomp.downcase
       validate_y_n(response)
-      board
     end
+    board
   end
   
   #should default ships to be cruiser and submarine
