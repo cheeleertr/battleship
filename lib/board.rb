@@ -1,10 +1,12 @@
 class Board
   attr_reader :cells
 
-  def initialize
+  def initialize(rows = "A".."D", columns = 1..4)
+    @rows = rows
+    @columns = columns
     @cells = {}
-      ("A".."D").each do |row|
-        (1..4).each do |column|
+      @rows.each do |row|
+        @columns.each do |column|
           @cells["#{row}#{column}"] = Cell.new("#{row}#{column}")
         end
       end

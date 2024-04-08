@@ -1,9 +1,9 @@
 class Player
   attr_reader :ships, :board
 
-  def initialize
+  def initialize(board = Board.new)
     @ships = []
-    @board = Board.new
+    @board = board
   end
 
   def place_ship(ship, coordinates)

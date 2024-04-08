@@ -1,20 +1,21 @@
-require 'board'
-require 'player'
-require 'ship'
-require 'cell'
+require './lib/board'
+# require 'player'
+# require 'ship'
+# require 'cell'
 
 class Maker
-  def initialize(player_1, computer_player)
-    @player_1 = player_1
-    @computer_player = computer_player
+  def initialize
+    # (player_1, computer_player)
+    # @player_1 = player_1
+    # @computer_player = computer_player
   end
 
   def create_board
     puts "Would you like to create a custom board?"
     puts "Enter 'y' to create custom board or 'n' to not create a board"
-    response = gets.chomp.lowercase
-    validate_y_n(response)
-    while response == y
+    response = gets.chomp.downcase
+    response = validate_y_n(response)
+    while response == "y"
       puts "Create a new board"
       puts "Determine the height of the board by entering a letter between A - Z"
       row_end = gets.chomp.capitalize
@@ -37,10 +38,10 @@ class Maker
       columns = 1..column_end.to_i
       board = Board.new(rows, columns)
       puts "Your board will look like this:"
-      board.render
+      puts board.render
       puts "Do you want to recreate the board?"
       puts "Enter 'y' to recreate board or 'n' to keep this board"
-      response = gets.chomp.lowercase
+      response = gets.chomp.downcase
       validate_y_n(response)
       board
     end
@@ -81,10 +82,11 @@ class Maker
   
   #use in module
   def validate_y_n(response)
-    loop do 
-      break if response == y || response == n
+    while response != "y" || response != "n"
       puts "Invalid. Please enter 'y' or 'n'"
-      response = gets.chomp
+      response = gets.chomp.downcase
+      break if response == "y" || response == "n"
     end
+    response
   end
 end

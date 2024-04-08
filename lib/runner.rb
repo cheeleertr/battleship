@@ -4,6 +4,7 @@ require './lib/game'
 require './lib/player'
 require './lib/ship'
 require './lib/turn'
+require './lib/maker'
 
 loop do
 
@@ -12,8 +13,13 @@ cruiser_2 = Ship.new("Cruiser", 3)
 submarine_1 = Ship.new("Submarine", 2)
 submarine_2 = Ship.new("Submarine", 2)
 
-player_1 = Player.new
-computer_player = Player.new
+maker = Maker.new
+board = maker.create_board
+
+player_1 = Player.new(board)
+computer_player = Player.new(board)
+
+
 
 player_1.add_ship(cruiser_1)
 player_1.add_ship(submarine_1)
