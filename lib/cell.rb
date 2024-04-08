@@ -29,8 +29,8 @@ class Cell
         @fired_upon
     end
 
-    def render(arg = false)
-        show_ship = arg
+    def render(show = false)
+        show_ship = show
         if fired_upon? && empty?
             "M"
         elsif fired_upon? && @ship.sunk?

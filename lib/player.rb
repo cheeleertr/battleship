@@ -6,8 +6,8 @@ class Player
     @board = Board.new
   end
 
-  def place_ship(cruiser, coordinates)
-    @board.place(cruiser, coordinates)
+  def place_ship(ship, coordinates)
+    @board.place(ship, coordinates)
   end
 
   def add_ship(ship)
