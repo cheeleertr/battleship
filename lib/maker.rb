@@ -2,6 +2,7 @@ require './lib/board'
 # require 'player'
 # require 'ship'
 # require 'cell'
+require "pry"
 
 class Maker
   def initialize
@@ -17,25 +18,25 @@ class Maker
     response = validate_y_n(response)
     while response == "y"
       puts "Create a new board"
-      puts "Determine the height of the board by entering a letter between A - Z"
+      puts "Determine the height of the board by entering a letter between C - Z"
       row_end = gets.chomp.capitalize
-    
-      while !"A".."Z".to_a.include?(row_end) 
-        puts "Invalid. Put a letter between A-Z"
+    # binding.pry
+      while !("C".."Z").to_a.include?(row_end) 
+        puts "Invalid. Put a letter between C-Z"
         row_end = gets.chomp.capitalize
       end
     
       rows = "A".."#{row_end}"
     
-      puts "Determine the width of the board by intering a number between 1 - 25"
-      column_end = gets.chomp
+      puts "Determine the width of the board by intering a number between 3 - 25"
+      column_end = gets.chomp.to_i
     
-      while !1..25.to_a.include?(column_end)
+      while !(3..25).to_a.include?(column_end)
         puts "Invalid. Put a number between 1- 25"
-        column_end = gets.chomp
+        column_end = gets.chomp.to_i
       end
     
-      columns = 1..column_end.to_i
+      columns = 1..column_end
       board = Board.new(rows, columns)
       puts "Your board will look like this:"
       puts board.render
