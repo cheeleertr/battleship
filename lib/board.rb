@@ -16,7 +16,7 @@ class Board
     @cells.keys.include?(coordinate)
   end
 
-  def validate_coordinates?(coordinates)
+  def validate_coordinates?(coordinates) 
     found = coordinates.find do |coordinate| 
       !validate_single_coordinate?(coordinate)
     end
@@ -35,7 +35,7 @@ class Board
       column = coordinates.map do |coordinate|
         coordinate[1..-1]
       end
-# binding.pry
+
       ("#{@columns.to_a.join}".include?(column.join) || "#{@rows.to_a.join}".include?(row.join)) && (all_equal?(column) || all_equal?(row))
     end
   end
@@ -67,16 +67,14 @@ class Board
   end
 
   def render(show_ship = false)
-    # "  1 2 3 4 \n" +
-    # "A #{@cells['A1'].render(show_ship)} #{@cells['A2'].render(show_ship)} #{@cells['A3'].render(show_ship)} #{@cells['A4'].render(show_ship)} \n" +
-    # "B #{@cells['B1'].render(show_ship)} #{@cells['B2'].render(show_ship)} #{@cells['B3'].render(show_ship)} #{@cells['B4'].render(show_ship)} \n" +
-    # "C #{@cells['C1'].render(show_ship)} #{@cells['C2'].render(show_ship)} #{@cells['C3'].render(show_ship)} #{@cells['C4'].render(show_ship)} \n" +
-    # "D #{@cells['D1'].render(show_ship)} #{@cells['D2'].render(show_ship)} #{@cells['D3'].render(show_ship)} #{@cells['D4'].render(show_ship)} \n"
-    
-    
+
     line1 = [" "].join(" ")
     @columns.to_a.each do |num|
-      line1 << " " + num.to_s
+      a = " " + num.to_s
+      while a.length < 3 && @columns.to_a.length >= 10
+        a.prepend(" ")
+      end
+      line1 << a
     end
     line1 << " \n"
 
@@ -89,10 +87,20 @@ class Board
 # binding.pry
       rendering_cells = matching_cells.map do |cell|
         cell[1].render(show_ship)
-      end.join(" ")
+      end
 
-      next_row = ["#{letter} "].join(" ")
-      next_row << rendering_cells
+      if @columns.to_a.length < 10
+      rendering_cells_spaced = rendering_cells.join(" ")
+      else 
+      rendering_cells_spaced = rendering_cells.join("  ")
+      end
+
+      if @columns.to_a.length < 10
+        next_row = ["#{letter} "].join(" ")
+      else
+        next_row = ["#{letter}  "].join(" ")
+      end
+      next_row << rendering_cells_spaced
       next_row << " \n"
       render_this << next_row
     end
