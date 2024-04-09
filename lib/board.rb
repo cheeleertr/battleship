@@ -1,5 +1,5 @@
 class Board
-  attr_reader :cells
+  attr_reader :cells, :rows, :columns
 
   def initialize(rows = "A".."D", columns = 1..4)
     @rows = rows
@@ -33,10 +33,10 @@ class Board
       end
 
       column = coordinates.map do |coordinate|
-        coordinate[1]
+        coordinate[1..-1]
       end
 
-      ("1234".include?(column.join) || "ABCD".include?(row.join)) && (all_equal?(column) || all_equal?(row))
+      ("#{@columns}".include?(column.join) || "#{@rows}".include?(row.join)) && (all_equal?(column) || all_equal?(row))
     end
   end
 
@@ -97,6 +97,7 @@ class Board
       render_this << next_row
     end
     render_this
+    # binding.pry
   end
 end
 
