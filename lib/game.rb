@@ -16,15 +16,11 @@ class Game
     if response == "q"
       return "You chose to quit."
     end
-    # puts "not yet"
+
     setup
-    puts "not yet"
   end
 
   def setup
-    puts "how bout now?"
-    # require 'pry'; binding.pry
-    #error loop in computer_player_place_ships method due to valid placement update
     computer_player_place_ships
     puts "did you past here?"
     computer_player_place_ships_text
@@ -38,9 +34,10 @@ class Game
       turn = Turn.new(@player_1, @computer_player)
       turn.player_shot_results(turn.player_shot)
       turn.computer_shot_results(turn.computer_shot)
-      results(turn)
     end
 
+    results(turn)
+    
     end_game
 
     reset(@player_1)
