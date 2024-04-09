@@ -13,12 +13,12 @@ cruiser_2 = Ship.new("Cruiser", 3)
 submarine_1 = Ship.new("Submarine", 2)
 submarine_2 = Ship.new("Submarine", 2)
 
-maker = Maker.new
-board = maker.create_board
-board_2 = Board.new(board.rows, board.columns)
+# maker = Maker.new
+# board = maker.create_board
+# board_2 = Board.new(board.rows, board.columns)
 
-player_1 = Player.new(board)
-computer_player = Player.new(board_2)
+player_1 = Player.new#(board)
+computer_player = Player.new#(board_2)
 
 
 

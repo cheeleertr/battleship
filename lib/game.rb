@@ -16,12 +16,17 @@ class Game
     if response == "q"
       return "You chose to quit."
     end
-    
+    # puts "not yet"
     setup
+    puts "not yet"
   end
 
   def setup
+    puts "how bout now?"
+    # require 'pry'; binding.pry
+    #error loop in computer_player_place_ships method due to valid placement update
     computer_player_place_ships
+    puts "did you past here?"
     computer_player_place_ships_text
     explain_ship_placement
     player_1_place_ships
@@ -72,7 +77,7 @@ class Game
       @computer_player.board.place(ship, coord)
     end
   end
-
+#this freeze here
   def random_coordinate(ship)
     sample_coords = @computer_player.board.cells.keys.sample(ship.length)
     while !@computer_player.board.valid_placement?(ship, sample_coords) || !@computer_player.board.validate_coordinates?(sample_coords)
