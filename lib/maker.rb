@@ -14,13 +14,11 @@ class Maker
   def create_board
     puts "Would you like to create a custom board?"
     puts "Enter 'y' to create custom board or 'n' to not create a board"
-    response = gets.chomp.downcase
-    response = validate_y_n(response)
+    response = validate_y_n(gets.chomp.downcase)
     while response == "y"
       puts "Create a new board"
       puts "Determine the height of the board by entering a letter between C - Z"
       row_end = gets.chomp.capitalize
-    # binding.pry
       while !("C".."Z").to_a.include?(row_end) 
         puts "Invalid. Put a letter between C-Z"
         row_end = gets.chomp.capitalize
@@ -42,8 +40,7 @@ class Maker
       puts board.render
       puts "Do you want to recreate the board?"
       puts "Enter 'y' to recreate board or 'n' to keep this board"
-      response = gets.chomp.downcase
-      validate_y_n(response)
+      response = validate_y_n(gets.chomp.downcase)
     end
     board
   end
@@ -83,11 +80,10 @@ class Maker
   
   #use in module
   def validate_y_n(response)
-    while response != "y" || response != "n"
+    loop do
+      return response if response == "y" || response == "n"
       puts "Invalid. Please enter 'y' or 'n'"
       response = gets.chomp.downcase
-      break if response == "y" || response == "n"
     end
-    response
   end
 end

@@ -15,7 +15,7 @@ submarine_2 = Ship.new("Submarine", 2)
 
 maker = Maker.new
 board = maker.create_board
-binding.pry
+
 player_1 = Player.new(board)
 computer_player = Player.new(board)
 
