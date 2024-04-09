@@ -1,14 +1,13 @@
 require './lib/board'
-# require 'player'
-# require 'ship'
-# require 'cell'
+require './lib/ship'
 require "pry"
 
 class Maker
+  attr_reader :custom_ships, :computer_custom_ships
+
   def initialize
-    # (player_1, computer_player)
-    # @player_1 = player_1
-    # @computer_player = computer_player
+    @custom_ships = []
+    @computer_custom_ships = []
   end
 
   def create_board
@@ -45,39 +44,39 @@ class Maker
     board
   end
   
-  #should default ships to be cruiser and submarine
-  
-  # def create_ship
-  #   puts "Would you like to create a ship?"
-  #   puts "Enter 'y' to create a ship or 'n' to not create a ship"
-  #   response = gets.chomp
-  #   validate_y_n(response)
-    
-  #   while response == "y"
-  #     puts "Choose the name of your ship"
-  #     name = gets.chomp
-  #     puts "choose length of ship"
-  #     puts "keep in mind length of ship should be less the board's max board width or height."
-  #     length = gets.chomp.to_i
-  #     puts "choose ship's length"
-  #     #validate entry with board length
-  #     player_ship = "#{name}" + "_1"
+  def create_ships
+    puts "Would you like to create a ship?"
+    puts "Enter 'y' to create a ship or 'n' to not create a ship"
 
-  #     player_ship = Ship.new(name, length)
-  #     ("#{name}" + "_2") = Ship.new(name, length)
-  #     @player_1.add_ship(name + "_1")
-  #     @computer_player.add_ship(name + "_2")
-  #     puts "Your ship has been created"
-  #     puts "Your ships are: #{player.ships}"
-  #     puts "Did you want to add another ship?"
-  #     puts "Enter 'y' to create another ship or 'n' to not create a ship"
-  #     response = gets.chomp.lowercase
-  #     validate_y_n(response)
-  #     break if gets.chomp != "yes"
-  #   end
-  # end
-  
-  
+    response = validate_y_n(gets.chomp.downcase)
+    
+    while response == "y"
+      puts "Enter the name of your ship"
+      name = gets.chomp
+      puts "Enter length of ship"
+      puts "Keep in mind the ship cannot be used if the ship length is greater than the board's max board width or height."
+      response = gets.chomp
+      loop do
+        break if response.to_i != 0
+        puts "Invalid. Please enter a number"
+        response = gets.chomp
+      end
+
+      length = response.to_i
+      
+      @custom_ships << Ship.new(name, length)
+      @computer_custom_ships << Ship.new(name, length)
+
+      puts "Your ship has been created"
+      ship_names = @custom_ships.map { |ship| ship.name }
+      puts "Your ships are: #{ship_names}"
+      puts "Did you want to add another ship?"
+      puts "Enter 'y' to create another ship or 'n' to not create a ship"
+      response = validate_y_n(gets.chomp.downcase)
+      break if response == "n"
+    end
+    @custom_ships
+  end
   #use in module
   def validate_y_n(response)
     loop do
