@@ -35,8 +35,8 @@ class Board
       column = coordinates.map do |coordinate|
         coordinate[1..-1]
       end
-
-      ("#{@columns}".include?(column.join) || "#{@rows}".include?(row.join)) && (all_equal?(column) || all_equal?(row))
+# binding.pry
+      ("#{@columns.to_a.join}".include?(column.join) || "#{@rows.to_a.join}".include?(row.join)) && (all_equal?(column) || all_equal?(row))
     end
   end
 
@@ -74,11 +74,11 @@ class Board
     # "D #{@cells['D1'].render(show_ship)} #{@cells['D2'].render(show_ship)} #{@cells['D3'].render(show_ship)} #{@cells['D4'].render(show_ship)} \n"
     
     
-    line1 = [" "].join
+    line1 = [" "].join(" ")
     @columns.to_a.each do |num|
-      line1 << num.to_s + " "
+      line1 << " " + num.to_s
     end
-    line1 << "\n"
+    line1 << " \n"
 
     render_this = [line1].join
 
@@ -91,9 +91,9 @@ class Board
         cell[1].render(show_ship)
       end.join(" ")
 
-      next_row = ["#{letter}"].join(" ")
+      next_row = ["#{letter} "].join(" ")
       next_row << rendering_cells
-      next_row << "\n"
+      next_row << " \n"
       render_this << next_row
     end
     render_this
