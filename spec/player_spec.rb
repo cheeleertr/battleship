@@ -9,18 +9,15 @@ RSpec.describe Player do
 
   describe '#initialize' do
     it 'exists' do
-
-    expect(@player_1).to be_an_instance_of(Player)
+      expect(@player_1).to be_an_instance_of(Player)
     end
 
     it 'has ships' do
-
-    expect(@player_1.ships).to be_empty
+      expect(@player_1.ships).to be_empty
     end
 
     it 'has a board' do
-
-    expect(@player_1.board).to be_an_instance_of(Board)
+      expect(@player_1.board).to be_an_instance_of(Board)
     end
   end
 
