@@ -16,7 +16,7 @@ class Game
     if response == "q"
       return "You chose to quit."
     end
-    
+
     setup
   end
 
@@ -25,7 +25,6 @@ class Game
     computer_player_place_ships_text
     explain_ship_placement
     player_1_place_ships
-
     game_loop
   end
 
@@ -34,9 +33,10 @@ class Game
       turn = Turn.new(@player_1, @computer_player)
       turn.player_shot_results(turn.player_shot)
       turn.computer_shot_results(turn.computer_shot)
-      results(turn)
     end
 
+    results(turn)
+    
     end_game
 
     reset(@player_1)
@@ -57,12 +57,10 @@ class Game
 
   def reset(player)
     player.ships.each do |ship|
-      ship.health = ship.length
+      ship.reset
     end
-    player.board.cells.each do |coord, cell|
-      cell.ship = nil
-      cell.fired_upon = false
-    end
+
+    player.new_board
   end
 
   def results(turn)
@@ -87,7 +85,7 @@ class Game
   def computer_player_place_ships_text
     puts "\n"
     puts "I have laid out my ships on the grid."
-    puts "You now need to lay out your two ships."
+    puts "You now need to lay out your ships."
   end
 
   def explain_ship_placement

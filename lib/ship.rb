@@ -19,4 +19,8 @@ class Ship
     def hit
         @health -= 1
     end
+
+    def reset
+        @health = @length
+    end
 end
