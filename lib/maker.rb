@@ -54,7 +54,7 @@ class Maker
       puts "Enter the name of your ship"
       name = gets.chomp
       puts "Enter length of ship"
-      puts "Keep in mind the ship cannot be used if the ship length is greater than the board's max board width or height."
+      puts "Keep in mind the ship will not be used if the ship length is greater than the board's max board width or height."
       response = gets.chomp
       loop do
         break if response.to_i != 0
