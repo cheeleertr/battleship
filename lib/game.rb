@@ -2,10 +2,8 @@ class Game
   attr_reader :player_1, :computer_player
 
   def initialize(player_1, computer_player)
-
     @player_1 = player_1
     @computer_player = computer_player
-    
   end
 
   def main_menu

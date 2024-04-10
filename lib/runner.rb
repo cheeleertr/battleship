@@ -45,7 +45,7 @@ else
     end
   end
 end
-# binding.pry
+
 game = Game.new(player_1, computer_player)
 
 game.main_menu
