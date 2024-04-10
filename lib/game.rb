@@ -161,12 +161,12 @@ class Game
       @computer_player.add_ship(cruiser_2)
       @computer_player.add_ship(submarine_2)
     else
-      @maker.ships.each do |ship|
+      @maker.custom_ships.each do |ship|
         if ship.length <= @player_1.board.columns.to_a.length || ship.length <= @player_1.board.rows.to_a.length
           @player_1.add_ship(ship)
         end
       end
-      @maker.computer_ships.each do |ship|
+      @maker.computer_custom_ships.each do |ship|
         if ship.length <= @computer_player.board.columns.to_a.length || ship.length <= @computer_player.board.rows.to_a.length
           @computer_player.add_ship(ship)
         end
