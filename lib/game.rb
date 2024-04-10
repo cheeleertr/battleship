@@ -1,3 +1,4 @@
+
 require './lib/board'
 require './lib/cell'
 require './lib/game'
@@ -18,6 +19,7 @@ class Game
     @maker = Maker.new
     @board = Board.new
     @board_2 = Board.new
+
   end
 
   def main_menu

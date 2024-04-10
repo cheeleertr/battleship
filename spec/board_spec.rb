@@ -9,29 +9,24 @@ RSpec.describe Board do
 
   describe '#initialize' do
     it 'exists' do
-
-    expect(@board).to be_an_instance_of(Board)
+      expect(@board).to be_an_instance_of(Board)
     end
 
     it 'has cells' do
-
       expect(@board.cells.values).to all(be_a(Cell))
     end
 
     it 'is a hash' do
-      
       expect(@board.cells).to be_a(Hash)
     end
 
     it 'has 16 cells' do
-
       expect(@board.cells.length).to eq(16)
     end
   end
 
   describe 'validate_single_coordinate?' do
     it 'validates a single coordinate' do
-      
       expect(@board.validate_single_coordinate?("A1")).to eq(true)
       expect(@board.validate_single_coordinate?("D4")).to eq(true)
       expect(@board.validate_single_coordinate?("A5")).to eq(false)
@@ -49,13 +44,11 @@ RSpec.describe Board do
 
   describe 'valid_placement?' do
     it 'verifies if ships can be placed at the coordinates' do
-
       expect(@board.valid_placement?(@cruiser, ["A1", "A2"])).to eq(false)
       expect(@board.valid_placement?(@submarine, ["A2", "A3", "A4"])).to eq(false)
     end
 
     it 'makes sure the coordinates are consecutive' do
-
       expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A4"])).to eq(false)
       expect(@board.valid_placement?(@submarine, ["A1", "C1"])).to eq(false)
       expect(@board.valid_placement?(@cruiser, ["A3", "A2", "A1"])).to eq(false)
@@ -63,7 +56,6 @@ RSpec.describe Board do
     end
 
     it 'makes sure the placement is not diagonal' do
-      
       expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A4"])).to eq(false)
       expect(@board.valid_placement?(@submarine, ["A1", "C1"])).to eq(false)
       expect(@board.valid_placement?(@cruiser, ["A3", "A2", "A1"])).to eq(false)
@@ -71,7 +63,6 @@ RSpec.describe Board do
     end
 
     it 'makes sure the placement is valid with correct coordinates' do
-
       expect(@board.valid_placement?(@submarine, ["A1", "A2"])).to eq(true)
       expect(@board.valid_placement?(@cruiser, ["B1", "C1", "D1"])).to eq(true)
     end
@@ -83,7 +74,7 @@ RSpec.describe Board do
     end
   end
 
-  describe "#place" do
+  describe '#place' do
     it 'adds a ship to the board' do
       @board.place(@cruiser, ["A1", "A2", "A3"]) 
 

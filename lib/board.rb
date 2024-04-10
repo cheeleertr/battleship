@@ -67,7 +67,6 @@ class Board
   end
 
   def render(show_ship = false)
-
     line1 = [" "].join(" ")
     @columns.to_a.each do |num|
       a = " " + num.to_s
@@ -76,6 +75,7 @@ class Board
       end
       line1 << a
     end
+
     line1 << " \n"
 
     render_this = [line1].join
@@ -84,7 +84,7 @@ class Board
       matching_cells = @cells.select do |coordinate, cell|
         cell.coordinate[0] == letter
       end
-# binding.pry
+
       rendering_cells = matching_cells.map do |cell|
         cell[1].render(show_ship)
       end
@@ -105,7 +105,6 @@ class Board
       render_this << next_row
     end
     render_this
-    # binding.pry
   end
 end
 
