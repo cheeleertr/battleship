@@ -1,17 +1,34 @@
+require './lib/board'
+require './lib/cell'
+require './lib/game'
+require './lib/player'
+require './lib/ship'
+require './lib/turn'
+require './lib/maker'
+
 class Game
-  attr_reader :player_1, :computer_player
+  attr_reader :player_1,
+              :computer_player,
+              :board,
+              :board_2
 
-  def initialize(player_1, computer_player)
-
-    @player_1 = player_1
-    @computer_player = computer_player
-    
+  def initialize
+    @player_1 = Player.new
+    @computer_player = Player.new
+    @maker = Maker.new
+    @board = Board.new
+    @board_2 = Board.new
   end
 
   def main_menu
     puts "Welcome to BATTLESHIP"
     puts "Enter p to play, q to quit."
     response = gets.chomp.downcase
+    loop do
+      break if response == "p" || response == "q"
+      puts "Invalid. Please enter 'p' or 'q'"
+      response = gets.chomp.downcase
+    end
 
     if response == "q"
       return "You chose to quit."
@@ -21,6 +38,10 @@ class Game
   end
 
   def setup
+    create_custom_board
+    create_custom_ships
+    add_board
+    add_ships
     computer_player_place_ships
     computer_player_place_ships_text
     explain_ship_placement
@@ -34,14 +55,9 @@ class Game
       turn.player_shot_results(turn.player_shot)
       turn.computer_shot_results(turn.computer_shot)
     end
-
     results(turn)
-    
     end_game
-
-    reset(@player_1)
-    reset(@computer_player)
-
+    reset
     main_menu
   end
 
@@ -55,12 +71,12 @@ class Game
     puts "\n"
   end
 
-  def reset(player)
-    player.ships.each do |ship|
-      ship.reset
-    end
-
-    player.new_board
+  def reset
+    @player_1 = Player.new
+    @computer_player = Player.new
+    @maker = Maker.new
+    @board = Board.new
+    @board_2 = Board.new
   end
 
   def results(turn)
@@ -112,6 +128,49 @@ class Game
         response = gets.chomp.upcase.split(" ").sort
       end
       @player_1.board.place(ship, response)
+    end
+  end
+
+  def create_custom_ships
+    @maker.create_ships
+    ships = @maker.custom_ships
+    computer_ships = @maker.computer_custom_ships
+  end
+
+  def create_custom_board
+    custom_board = @maker.create_board
+    if !custom_board.nil?
+      @board = custom_board
+    end
+    @board_2 = Board.new(@board.rows, @board.columns)
+  end
+
+  def add_board
+    @player_1 = Player.new(@board)
+    @computer_player = Player.new(@board_2)
+  end
+
+  def add_ships
+    if @maker.custom_ships.empty?
+      cruiser_1 = Ship.new("Cruiser", 3)
+      cruiser_2 = Ship.new("Cruiser", 3)
+      submarine_1 = Ship.new("Submarine", 2)
+      submarine_2 = Ship.new("Submarine", 2)
+      @player_1.add_ship(cruiser_1)
+      @player_1.add_ship(submarine_1)
+      @computer_player.add_ship(cruiser_2)
+      @computer_player.add_ship(submarine_2)
+    else
+      @maker.ships.each do |ship|
+        if ship.length <= @player_1.board.columns.to_a.length || ship.length <= @player_1.board.rows.to_a.length
+          @player_1.add_ship(ship)
+        end
+      end
+      @maker.computer_ships.each do |ship|
+        if ship.length <= @computer_player.board.columns.to_a.length || ship.length <= @computer_player.board.rows.to_a.length
+          @computer_player.add_ship(ship)
+        end
+      end
     end
   end
 end
