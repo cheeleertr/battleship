@@ -2,22 +2,22 @@ require 'spec_helper'
 
 RSpec.describe Turn do
     before(:each) do
-    @cruiser = Ship.new("Cruiser", 3)
-    @submarine = Ship.new("Submarine", 2)
+        @cruiser = Ship.new("Cruiser", 3)
+        @submarine = Ship.new("Submarine", 2)
 
-    @player_1 = Player.new
-    @computer_player = Player.new
+        @player_1 = Player.new
+        @computer_player = Player.new
 
-    @player_1.add_ship(@cruiser)
-    @player_1.add_ship(@submarine)
+        @player_1.add_ship(@cruiser)
+        @player_1.add_ship(@submarine)
 
-    @computer_player.add_ship(@cruiser)
-    @computer_player.add_ship(@submarine)
+        @computer_player.add_ship(@cruiser)
+        @computer_player.add_ship(@submarine)
 
-    @turn = Turn.new(@player_1, @computer_player)
+        @turn = Turn.new(@player_1, @computer_player)
     end
 
-    describe "#initialize" do
+    describe '#initialize' do
         it 'exists' do
             expect(@turn).to be_an_instance_of(Turn)
         end
