@@ -58,6 +58,8 @@ RSpec.describe Cell do
         it "decrements the health of the ship" do
             @cell.place_ship(@cruiser)
 
+            expect(@cell.ship.health).to eq(3)
+
             @cell.fire_upon
 
             expect(@cell.ship.health).to eq(2)
@@ -66,13 +68,11 @@ RSpec.describe Cell do
 
     describe "#render" do
         it "returns a period if cell has not been fired upon" do
-            cell_2 = Cell.new("C3")
-
             expect(@cell.render).to eq(".")
 
-            cell_2.place_ship(@cruiser)
+            @cell.place_ship(@cruiser)
 
-            expect(cell_2.render).to eq(".")
+            expect(@cell.render).to eq(".")
         end
 
         it "returns an M if cell has been fired upon and has no ship" do
